@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 const TaskContainer = styled.div`
-	width: 100%;
+	width: calc(100% - 20px);
 	background-color: grey;
-	margin: 10px;
-	padding: 10px
+	padding: 10px;
+    margin-bottom: 10px
 	`
 
 const TaskID = styled.h3`
@@ -22,7 +22,7 @@ const TaskName = styled.p`
 
 const TaskUser = styled.p`
     color: #333;     
-    font-size: 24px;       
+    font-size: 20px;       
     margin-bottom: 16px;   
     text-align: center;
 	`

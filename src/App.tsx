@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import './App.css'
-import TaskCard from './components/features/Task/TaskCard'
+import Board from './components/features/Board/Board'
 import { tasks as initialTasks, statutes, Task } from './utils/data-tasks'
 
+
 function App() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks)
+  const [tasks] = useState<Task[]>(initialTasks)
+  const columns = statutes.map((status) => {
+    const tasksInColumn = tasks.filter((task) => task.idColumn === status)
+    return {
+      title: status,
+      tasks: tasksInColumn
+    }
+  })
   return (
     <>
-     {tasks.map((task: { id: any; name: any; user: any }) => (
-            <TaskCard 
-              id={task.id}
-              name={task.name}
-              user={task.user}
-            />
-          ))}
+    <Board columns={columns} tasks={tasks}></Board>
     </>
   )
 }
