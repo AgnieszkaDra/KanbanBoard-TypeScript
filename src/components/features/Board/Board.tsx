@@ -1,4 +1,7 @@
-import TaskCard from '../Task/TaskCard';
+import TodoCard from '../../TodoCard';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+
+import { fetchTodos } from '../../../api';
 
 import styled from 'styled-components';
 const BoardContainer = styled.div`
@@ -23,20 +26,28 @@ const ColumnTitle = styled.h2`
     text-align: center;
 `
 const Board = ({columns}) => {
+  const queryKey = ["todos"] as const;
+
+  const queryOptions: UseQueryOptions<Todo[], Error> = {
+      queryFn: () => fetchTodos(),
+      queryKey,
+      staleTime: Infinity, 
+      cacheTime: 0
+    };
+
+    const { data: todos} = useQuery(queryOptions
+    );
     return (
       <BoardContainer>
          {columns.map((column) => (
         <Column>
         <ColumnTitle>{column.title}</ColumnTitle>
-          {column.tasks.map((task) => (
-              <TaskCard 
-              id={task.id}
-              name={task.name}
-              user={task.user}
-              />
-            ))}   
+       
         </Column>
-        ))}
+))} 
+{todos?.map((task) => {
+                return <TodoCard key={task.id} todo={task}/>
+            })}  
       </BoardContainer>
     ) 
 }
