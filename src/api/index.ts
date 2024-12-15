@@ -26,25 +26,24 @@ export const fetchTodos = async(query=""): Promise<Todo[]> => {
     todo.title.toLowerCase().includes(query.toLowerCase())
     );
 
+    console.log(filteredTodos)
+
     return [...filteredTodos]
 }
 
-// export const addTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
-//     await new Promise((resolve) => setTimeout(resolve, 1000));
+export const addTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     
-//     const newTodo = {
-//         id: todos.length + 1,
-//         title: todo.title,
-//         idColumn: todo.idColumn
-//         completed: false,
-//         id: 1,
-//       title: 'Shopping',
-//       idColumn: 'Analysis-doing',
-//       user: 'Anna',
-//       completed: false
-//     }
+    const newTodo = {
+        id: todos.length + 1,
+        title: todo.title,
+        idColumn: 'Pending',
+        user: 'Ola',
+        completed: false,
+        
+    }
 
-//     todos.push(newTodo);
+    todos.push(newTodo);
 
-//     return newTodo
-// }
+    return newTodo
+}
