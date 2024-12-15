@@ -39,15 +39,23 @@ const Board = ({columns}) => {
     );
     return (
       <BoardContainer>
-         {columns.map((column) => (
-        <Column>
-        <ColumnTitle>{column.title}</ColumnTitle>
-       
-        </Column>
-))} 
-{todos?.map((task) => {
-                return <TodoCard key={task.id} todo={task}/>
-            })}  
+          {columns.map((column) => {
+        const filteredTodos = todos?.filter((task) => task.idColumn === column.title);
+        console.log(`Todos for column ${column.id}:`, filteredTodos);
+        console.log(columns)
+
+        return (
+          <Column key={column.id}>
+            <ColumnTitle>{column.title}</ColumnTitle>
+
+
+            {filteredTodos?.map((filteredTodo) => (
+               <div style={{ border: "2px solid red", marginBottom: "8px", padding: "10px" }}><TodoCard key={filteredTodo.id} todo={filteredTodo} /></div> 
+              
+            ))}
+          </Column>
+        );
+      })}
       </BoardContainer>
     ) 
 }
