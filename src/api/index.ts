@@ -40,7 +40,6 @@ export const addTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
         idColumn: 'Pending',
         user: 'Ola',
         completed: false,
-        
     }
 
     todos.push(newTodo);

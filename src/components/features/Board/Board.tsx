@@ -4,7 +4,6 @@ import { Todo } from '../../../types';
 import TodoCard from '../Todo/TodoCard';
 import { statutes, ColumnTypes } from '../../../types'
 import styled from 'styled-components';
-import { useState } from 'react';
 import AddTodoForm from '../AddTodoForm/AddTodoForm';
 
 const ColumnsContainer = styled.div`
@@ -49,8 +48,7 @@ const ColumnTitle = styled.div<ColumnTitleProps>`
 
 const Board = () => {
    
-    const [search] = useState("");
-    const queryKey = ["todos", { search }] as const;
+    const queryKey = ["todos"] as const;
   
     const queryOptions: UseQueryOptions<Todo[], Error> = {
       queryFn: () => fetchTodos(),
