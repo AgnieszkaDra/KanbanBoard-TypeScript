@@ -5,12 +5,12 @@ export type Task = {
     idColumn: Status,
     user: string,
 }
-export type Column = {
+export type ColumnTypes = {
   id: number,
-  name: Status, 
-  limit: number,
+  title: Status, 
 }
 export const statutes: Status[] = ['Pending', 'Analysis-doing', 'Analysis-done']
+
 export const tasks: Task[] =  [
     {  
       id: 1,
@@ -26,11 +26,4 @@ export const tasks: Task[] =  [
     },
   ]
 
-  export const initialColumns: Column[] = [
-    { id: 1, name: 'Pending', limit: 6 },
-    { id: 2, name: 'Analysis-doing', limit: 4 },
-    { id: 3, name: 'Analysis-doing', limit: 3 },
-    { id: 4, name: 'Analysis-done', limit: 2 },
-    { id: 5, name: 'Analysis-done', limit: 2 },
-  ];
 
