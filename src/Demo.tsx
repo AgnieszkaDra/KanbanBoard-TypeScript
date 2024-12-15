@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, UseQueryOptions, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchTodos } from "./api";
-import TodoCard from "./components/TodoCard";
+import TodoCard from "./components/features/Todo/TodoCard";
 import { Todo } from "./entities/Todo";
 
 export default function Demo() {

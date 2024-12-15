@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo } from '../types';
+import { Todo } from '../../../types';
 import styled from 'styled-components';
 
 interface TodoCardProps {
@@ -7,8 +7,10 @@ interface TodoCardProps {
 }
 
 const TodoContainer = styled.div`
-	width: calc(100% - 20px);
-	background-color: grey;
+  margin-right: auto;
+  margin-left: auto;
+	width: 80%;
+	border: 2px solid var(--color-grey-dark);
 	padding: 10px;
     margin-bottom: 10px
 	`
@@ -23,9 +25,9 @@ const TaskID = styled.h3`
 const TaskName = styled.p`
     color: #333;     
     font-size: 24px;       
-    margin-bottom: 16px;   
+    margin: 0;   
     text-align: center;
-	`
+  `
 
 const TaskUser = styled.p`
     color: #333;     
@@ -37,11 +39,6 @@ const TaskUser = styled.p`
 const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
   return (
     <div className="border p-2 rounded mb-2 flex justify-between items-center">
-      <div>
-        <h3 className="font-semibold">{todo.title}</h3>
-        <p>Status: {todo.completed ? 'Completed ✅' : 'Incomplete ❌'}</p>
-      </div>
-      <button className="text-sm text-blue-500">Edit</button>
       <TodoContainer>
         <TaskID>
           {`Task${todo.id}`}

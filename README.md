@@ -96,3 +96,5 @@ Do wykonania zadania możesz użyć [konfiguracji wykorzystującej ESLinta i Pre
 > ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
 > 
 > 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+
+https://www.jetbrains.com/youtrack/features/agile_project_management.html
