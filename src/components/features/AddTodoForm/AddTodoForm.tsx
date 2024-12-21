@@ -1,33 +1,20 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { addTodo } from "../../../api";
-import { queryClient } from "../../../queryClient";
+import useAddTodo from "../../../hooks/useAddTodo";
 
 const AddTodoForm = () => {
   const [title, setTitle] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  const { mutateAsync: addTodoMutation, isPending } = useMutation({
-    mutationFn: addTodo,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-      setTitle(""); 
-    },
-    onError: (err) => {
-      setError("Failed to add todo. Please try again."); 
-      console.error(err);
-    },
-  });
+  const { addTodoMutation, isPending, error, setError } = useAddTodo();
 
   const handleAddTodo = async () => {
     if (!title.trim()) {
       setError("Title cannot be empty");
       return;
     }
-    setError(null); 
+    setError(null);
 
     try {
       await addTodoMutation({ title });
+      setTitle(""); 
     } catch (e) {
       console.error(e);
     }

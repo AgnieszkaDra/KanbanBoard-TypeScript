@@ -1,11 +1,10 @@
-import React from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Todo } from '../../../types';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ButtonComponent from '../../../ui/Button/ButtonComponent';
-import styled from 'styled-components';
-import { deleteTodo } from '../../../api';  // Ensure you have an API function to delete todo
+import React from "react";
+import { Todo } from "../../../types";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ButtonComponent from "../../../ui/Button/ButtonComponent";
+import useDeleteTodo from "../../../hooks/useDeletetodo";
+import styled from "styled-components";
 
 interface TodoCardProps {
   todo: Todo;
@@ -46,24 +45,17 @@ const TaskUser = styled.p`
 `;
 
 const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
-  const queryClient = useQueryClient();
-  const { mutateAsync: deleteTodoMutation, isPending } = useMutation({
-    mutationFn: deleteTodo, 
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-    },
-    onError: (error) => {
-      console.error('Error deleting todo:', error);
-    },
-  });
+  const { deleteTodoMutation, isPending } = useDeleteTodo();
 
   const handleDelete = async () => {
-    const confirmed = window.confirm('Are you sure you want to delete this task?');
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this task?"
+    );
     if (confirmed) {
       try {
-        await deleteTodoMutation(todo.id);  
+        await deleteTodoMutation(todo.id);
       } catch (error) {
-        console.error('Failed to delete todo:', error);
+        console.error("Failed to delete todo:", error);
       }
     }
   };
@@ -71,19 +63,17 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
   return (
     <TodoContainer>
       <TodoHeader>
-        <TodoId>
-          {`Task ${todo.id}`}
-        </TodoId>
-        <TodoName>
-          {todo.title}
-        </TodoName>
-        <ButtonComponent onClick={handleDelete} variant={'delete'} disabled={isPending}>
+        <TodoId>{`Task ${todo.id}`}</TodoId>
+        <TodoName>{todo.title}</TodoName>
+        <ButtonComponent
+          onClick={handleDelete}
+          variant={"delete"}
+          disabled={isPending}
+        >
           <FontAwesomeIcon icon={faTrash} />
         </ButtonComponent>
       </TodoHeader>
-      <TaskUser>
-        {todo.user}
-      </TaskUser>
+      <TaskUser>{todo.user}</TaskUser>
     </TodoContainer>
   );
 };
