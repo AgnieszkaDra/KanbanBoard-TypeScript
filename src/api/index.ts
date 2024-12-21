@@ -47,19 +47,13 @@ export const addTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
     return newTodo
 }
 
-export const deleteTodo = async (id: number): Promise<boolean> => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+export const deleteTodo = async (id: number): Promise<Todo[]> => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
- 
-  const index = todos.findIndex((todo) => todo.id === id);
-  
-  if (index !== -1) {
-  
-    todos.splice(index, 1);
-    console.log(`Todo with id ${id} deleted.`);
-    return true;
-  } else {
-    console.error(`Todo with id ${id} not found.`);
-    return false;
-  }
-  };
+  const updatedTodos = todos.filter((todo) => todo.id !== id);
+
+  todos.length = 0; 
+  todos.push(...updatedTodos); 
+
+  return todos
+};
