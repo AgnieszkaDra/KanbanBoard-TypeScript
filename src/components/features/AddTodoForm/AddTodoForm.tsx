@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAddTodo from "../../../hooks/useAddTodo";
+import Button from "../../../ui/Button/ButtonComponent";  
 
 const AddTodoForm = () => {
   const [title, setTitle] = useState("");
@@ -34,20 +35,13 @@ const AddTodoForm = () => {
           borderRadius: "4px",
         }}
       />
-      <button
+      <Button
         onClick={handleAddTodo}
         disabled={isPending}
-        style={{
-          padding: "8px 12px",
-          backgroundColor: isPending ? "#aaa" : "#007BFF",
-          color: "#fff",
-          border: "none",
-          borderRadius: "4px",
-          cursor: isPending ? "not-allowed" : "pointer",
-        }}
+        variant={ "add" } 
       >
         {isPending ? "Adding..." : "Add Todo"}
-      </button>
+      </Button>
       {error && <p style={{ color: "red", marginTop: "8px" }}>{error}</p>}
     </div>
   );

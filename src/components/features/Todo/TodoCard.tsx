@@ -3,7 +3,7 @@ import { Todo } from "../../../types";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ButtonComponent from "../../../ui/Button/ButtonComponent";
-import useDeleteTodo from "../../../hooks/useDeletetodo";
+import useDeleteTodo from "../../../hooks/useDeleteTodo";
 import styled from "styled-components";
 
 interface TodoCardProps {
@@ -45,7 +45,7 @@ const TaskUser = styled.p`
 `;
 
 const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
-  const { deleteTodoMutation, isPending } = useDeleteTodo();
+  const { deleteTodoMutation } = useDeleteTodo();
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
@@ -68,7 +68,6 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
         <ButtonComponent
           onClick={handleDelete}
           variant={"delete"}
-          disabled={isPending}
         >
           <FontAwesomeIcon icon={faTrash} />
         </ButtonComponent>

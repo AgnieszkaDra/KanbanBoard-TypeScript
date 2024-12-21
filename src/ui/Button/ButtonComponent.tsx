@@ -5,11 +5,11 @@ import styled from "styled-components";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   children: React.ReactNode;
-  variant?: "delete" | "default"; 
+  variant?: "delete" | "add" | "default"; 
 }
 
 
-const ButtonContainer = styled.button<{ variant?: "delete" | "default" }>`
+const ButtonContainer = styled.button<{ variant?: "delete" | "add" | "default" }>`
   color: var(--color-grey-dark);
   background: none;
   margin: 0.5rem;
@@ -25,6 +25,12 @@ const ButtonContainer = styled.button<{ variant?: "delete" | "default" }>`
       transition: transform 0.3s ease-in-out;
     }
   `}
+
+  ${({ variant }) => variant === "add" && `
+    background-color: var(--color-background);
+    color: var(--color-font);
+    `}
+
 `;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
